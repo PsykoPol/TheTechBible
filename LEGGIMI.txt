@@ -1,0 +1,48 @@
+ZONE DMX - app da installare, anche offline
+===========================================
+
+Cosa contiene questa cartella
+- index.html          l'app (indirizzi DMX, zone, cablaggi, PDF)
+- manifest.webmanifest, icon-192.png, icon-512.png, apple-touch-icon.png   nome e icona dell'app
+- sw.js               fa funzionare l'app anche senza rete, dopo la prima apertura
+
+IMPORTANTE: i file vanno messi su un sito con indirizzo https (anche gratuito).
+Aprendo index.html direttamente dal telefono o dall'iPad NON funziona offline.
+
+1) Mettere i file online (scegli UNA strada)
+
+A. GitHub Pages (gratis, si fa anche da iPad con il browser)
+   1. Crea un account su github.com e poi un nuovo "repository" pubblico (es. nome: zone-dmx).
+   2. Nella pagina del repository: "Add file" > "Upload files" e scegli TUTTI i file di questa cartella
+      (index.html, sw.js, manifest.webmanifest e le 3 immagini). Premi "Commit changes".
+   3. "Settings" > "Pages" > "Branch: main" e cartella "/ (root)" > "Save".
+   4. Dopo un paio di minuti l'indirizzo e' https://TUONOME.github.io/zone-dmx/
+
+B. Netlify Drop (gratis)
+   1. Vai su app.netlify.com/drop e trascina la cartella (o lo zip) nella pagina.
+   2. Crea un account gratuito e "rivendica" il sito, altrimenti scade dopo poco.
+   3. Netlify ti da' un indirizzo https per l'app.
+
+2) Installare l'app
+
+- iPad / iPhone: apri l'indirizzo in Safari, premi Condividi > "Aggiungi alla schermata Home".
+- Android (Chrome): menu a tre puntini > "Installa app" o "Aggiungi a schermata Home".
+- Computer (Chrome/Edge): icona di installazione nella barra dell'indirizzo.
+
+3) Usarla offline
+
+Apri l'app una volta CON la rete (serve a salvare i file sul dispositivo). Da quel momento si apre
+e funziona anche senza rete. In alto compare "Offline" quando non c'e' connessione.
+Quando metti online una nuova versione, l'app la prende alla successiva apertura con la rete.
+
+4) Salvare, caricare e condividere i progetti
+
+- I progetti sono salvati sul dispositivo (nella memoria dell'app), ad ogni modifica.
+- Scheda "Progetti": "Esporta progetto aperto" crea un file .json. Su iPad/iPhone/Android si apre il foglio
+  di condivisione: puoi salvarlo in File, mandarlo con AirDrop, e-mail o WhatsApp, oppure caricarlo su un cloud.
+- Per aprirlo su un altro dispositivo: scheda Progetti > "Importa" e scegli il file .json.
+- I PDF si salvano nello stesso modo da "Crea PDF".
+- L'app installata e la stessa pagina aperta in Safari hanno memorie separate: per spostare i progetti
+  dall'una all'altra usa Esporta e poi Importa.
+- Fai ogni tanto un'esportazione di tutti i progetti come copia di sicurezza: se cancelli i dati del
+  sito o disinstalli l'app, i progetti sul dispositivo vanno persi.
