@@ -1,48 +1,51 @@
-ZONE DMX - app da installare, anche offline
-===========================================
+ZONE DMX (grafica Flight case) - file per GitHub, app privata e offline
+=====================================================================
 
-Cosa contiene questa cartella
-- index.html          l'app (indirizzi DMX, zone, cablaggi, PDF)
-- manifest.webmanifest, icon-192.png, icon-512.png, apple-touch-icon.png   nome e icona dell'app
-- sw.js               fa funzionare l'app anche senza rete, dopo la prima apertura
+File da caricare su GitHub (stesso nome = sostituiscono quelli vecchi):
+- index.html            l'app aggiornata (indirizzi, zone, cablaggi, cabina, PDF)
+- sw.js                 la fa funzionare offline (versione v3)
+- manifest.webmanifest  nome, colori e icona dell'app
+- icon-192.png, icon-512.png, apple-touch-icon.png   icone (uguali a prima)
 
-IMPORTANTE: i file vanno messi su un sito con indirizzo https (anche gratuito).
-Aprendo index.html direttamente dal telefono o dall'iPad NON funziona offline.
+0) PRIMA DI TUTTO: salva i progetti
+   L'indirizzo dell'app cambia, e ogni indirizzo ha una memoria separata.
+   Nella vecchia app: scheda Progetti > "Esporta tutti" e salva il file .json in File.
+   Dopo, nella nuova app: Progetti > "Importa".
 
-1) Mettere i file online (scegli UNA strada)
+1) Sostituire i file su GitHub
+   Repository zone-dmx > "Add file" > "Upload files" > scegli i 6 file > "Commit changes".
 
-A. GitHub Pages (gratis, si fa anche da iPad con il browser)
-   1. Crea un account su github.com e poi un nuovo "repository" pubblico (es. nome: zone-dmx).
-   2. Nella pagina del repository: "Add file" > "Upload files" e scegli TUTTI i file di questa cartella
-      (index.html, sw.js, manifest.webmanifest e le 3 immagini). Premi "Commit changes".
-   3. "Settings" > "Pages" > "Branch: main" e cartella "/ (root)" > "Save".
-   4. Dopo un paio di minuti l'indirizzo e' https://TUONOME.github.io/zone-dmx/
+2) Rendere il repository privato
+   Settings > General > in fondo "Danger Zone" > "Change visibility" > "Make private".
+   Poi Settings > Pages: togli la pubblicazione (GitHub Pages pubblica il sito per tutti,
+   anche da un repository privato, quindi non va bene per un'app privata).
 
-B. Netlify Drop (gratis)
-   1. Vai su app.netlify.com/drop e trascina la cartella (o lo zip) nella pagina.
-   2. Crea un account gratuito e "rivendica" il sito, altrimenti scade dopo poco.
-   3. Netlify ti da' un indirizzo https per l'app.
+3) Mettere l'app online su Cloudflare Pages (gratis)
+   dash.cloudflare.com > crea l'account > "Workers & Pages" > "Create" > scheda "Pages"
+   > "Connect to Git" > collega GitHub dando accesso SOLO al repository zone-dmx.
+   Impostazioni: Framework preset "None", Build command vuoto, Build output directory vuoto (o "/").
+   Nome del progetto: uno difficile da indovinare. Indirizzo: https://NOME.pages.dev
+   Da ora ogni file che carichi su GitHub va online da solo in un minuto.
 
-2) Installare l'app
+4) Chiudere l'accesso: solo tu (Cloudflare Zero Trust, gratis fino a 50 utenti)
+   Nel menu di Cloudflare apri "Zero Trust", scegli un nome per il team e il piano Free.
+   Access > Applications > Add an application > "Self-hosted":
+     - dominio: NOME.pages.dev   (aggiungi anche *.NOME.pages.dev per le versioni di prova)
+     - Session duration: 1 month
+     - Policy: Action "Allow", regola "Emails" = la tua email
+   Settings > Authentication > Login methods: controlla che "One-time PIN" sia attivo.
+   Chi apre l'indirizzo vede una pagina che chiede l'email: solo la tua riceve il codice.
 
-- iPad / iPhone: apri l'indirizzo in Safari, premi Condividi > "Aggiungi alla schermata Home".
-- Android (Chrome): menu a tre puntini > "Installa app" o "Aggiungi a schermata Home".
-- Computer (Chrome/Edge): icona di installazione nella barra dell'indirizzo.
+5) Installare sull'iPad
+   Apri https://NOME.pages.dev in Safari, entra con l'email e il codice,
+   poi Condividi > "Aggiungi alla schermata Home". Aprila una volta con la rete.
+   Da quel momento funziona anche senza rete, anche se l'accesso scade.
 
-3) Usarla offline
+6) Aggiornare in futuro
+   Carica il nuovo index.html su GitHub e in sw.js cambia "zone-dmx-v3" in "zone-dmx-v4" (poi v5 ...).
+   L'app prende l'aggiornamento alla prima apertura con la rete. Se l'accesso è scaduto,
+   apri l'indirizzo in Safari, rientra con il codice, poi riapri l'app.
 
-Apri l'app una volta CON la rete (serve a salvare i file sul dispositivo). Da quel momento si apre
-e funziona anche senza rete. In alto compare "Offline" quando non c'e' connessione.
-Quando metti online una nuova versione, l'app la prende alla successiva apertura con la rete.
-
-4) Salvare, caricare e condividere i progetti
-
-- I progetti sono salvati sul dispositivo (nella memoria dell'app), ad ogni modifica.
-- Scheda "Progetti": "Esporta progetto aperto" crea un file .json. Su iPad/iPhone/Android si apre il foglio
-  di condivisione: puoi salvarlo in File, mandarlo con AirDrop, e-mail o WhatsApp, oppure caricarlo su un cloud.
-- Per aprirlo su un altro dispositivo: scheda Progetti > "Importa" e scegli il file .json.
-- I PDF si salvano nello stesso modo da "Crea PDF".
-- L'app installata e la stessa pagina aperta in Safari hanno memorie separate: per spostare i progetti
-  dall'una all'altra usa Esporta e poi Importa.
-- Fai ogni tanto un'esportazione di tutti i progetti come copia di sicurezza: se cancelli i dati del
-  sito o disinstalli l'app, i progetti sul dispositivo vanno persi.
+Privacy
+- I progetti restano solo sull'iPad, nella memoria dell'app: non vanno mai su GitHub né su Cloudflare.
+- Fai ogni tanto "Esporta tutti" come copia di sicurezza.
